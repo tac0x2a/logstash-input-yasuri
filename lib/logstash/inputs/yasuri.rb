@@ -4,12 +4,8 @@ require "logstash/namespace"
 require "stud/interval"
 require "socket" # for Socket.gethostname
 
-# Generate a repeating message.
-#
-# This plugin is intented only as an example.
-
-class LogStash::Inputs::Example < LogStash::Inputs::Base
-  config_name "example"
+class LogStash::Inputs::Yasuri < LogStash::Inputs::Base
+  config_name "yasuri"
 
   # If undefined, Logstash will complain, even if codec is unused.
   default :codec, "plain"

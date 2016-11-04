@@ -1,8 +1,8 @@
 # encoding: utf-8
 require "logstash/devutils/rspec/spec_helper"
-require "logstash/inputs/example"
+require "logstash/inputs/yasuri"
 
-describe LogStash::Inputs::Example do
+describe LogStash::Inputs::Yasuri do
 
   it_behaves_like "an interruptible input plugin" do
     let(:config) { { "interval" => 100 } }
