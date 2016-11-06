@@ -6,7 +6,7 @@ describe LogStash::Inputs::Yasuri do
 
   let(:input) {
     input = LogStash::Plugin.lookup("input", "yasuri").new(
-      "flatten" => true,
+      "split" => true,
       "url" => "https://news.ycombinator.com/",
       "parse_tree" => %Q|
         {
