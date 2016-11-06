@@ -1,6 +1,6 @@
 # Logstash Plugin
 
-[![Travis Build Status](https://travis-ci.org/tac0x2a/logstash-input-yasuri.svg)](https://travis-ci.org/tac0x2a/logstash-input-yasuri)
+[![Build Status](https://travis-ci.org/tac0x2a/logstash-input-yasuri.svg?branch=master)](https://travis-ci.org/tac0x2a/logstash-input-yasuri)
 
 This is a plugin for [Logstash](https://github.com/elastic/logstash).
 
