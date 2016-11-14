@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'logstash-input-yasuri'
-  s.version         = '0.0.2'
+  s.version         = '2.0.3'
   s.licenses = ['Apache License (2.0)']
   s.summary = "Web scraping input plugin for logstash."
   s.description     = "Web scraping input plugin for logstash."
@@ -18,10 +18,11 @@ Gem::Specification.new do |s|
   s.metadata = { "logstash_plugin" => "true", "logstash_group" => "input" }
 
   # Gem dependencies
-  s.add_runtime_dependency "logstash-core", ">= 2.0.0", "<= 5.0.0"
-  s.add_runtime_dependency 'logstash-codec-plain'
+  s.add_runtime_dependency 'logstash-core-plugin-api', '~> 1'
   s.add_runtime_dependency 'stud', '>= 0.0.22'
-  s.add_runtime_dependency 'yasuri', '>= 0.0.1'
+  s.add_runtime_dependency 'yasuri', '~> 1.9'
+
   s.add_development_dependency 'logstash-devutils', '>= 0.0.16'
+  s.add_development_dependency 'logstash-codec-plain'
   s.add_development_dependency 'fuubar', '>= 2.2.0'
 end
