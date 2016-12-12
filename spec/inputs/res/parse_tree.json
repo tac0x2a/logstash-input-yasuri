@@ -1,0 +1,17 @@
+{
+  "node": "struct",
+  "name": "titles",
+  "path": "//td[@class='title'][not(@align)]",
+  "children": [
+    {
+      "node": "text",
+      "name": "title",
+      "path": "./a"
+    },
+    {
+      "node": "text",
+      "name": "url",
+      "path": "./a/@href"
+    }
+  ]
+}
