@@ -10,9 +10,15 @@ class LogStash::Inputs::Yasuri < LogStash::Inputs::Base
 
   default :codec, "plain"
 
+  # logstash-input-yasuri require option :parse_tree or :parse_tree_path.
+  # If given both, logstash-input-yasuri use :parse_tree.
+
   # Parse tree as JSON.
   # Read https://github.com/tac0x2a/yasuri/blob/master/USAGE.md#construct-parse-tree
   config :parse_tree, :validate => :string
+
+  # Path to parse tree JSON file.
+  config :parse_tree_path, :validate => :string
 
   # Target web page url.
   config :url, :validate => :string
@@ -26,7 +32,11 @@ class LogStash::Inputs::Yasuri < LogStash::Inputs::Base
   def register
     @host = Socket.gethostname
     @agent = Mechanize.new
-    @tree  = Yasuri.json2tree(@parse_tree)
+
+    # If given both, logstash-input-yasuri use :parse_tree.
+    tree = @parse_tree || File.read(@parse_tree_path)
+
+    @tree  = Yasuri.json2tree(tree)
   end # def register
 
   def run(queue)
