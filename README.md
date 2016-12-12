@@ -52,6 +52,11 @@ gem build logstash-input-yasuri
 # generate logstash-input-yasuri-x.x.x.gem
 ```
 
+- publish gem
+```sh
+bundle exec rake publish_gem
+```
+
 ### 2. Running your unpublished Plugin in Logstash
 
 #### 2.1 Run in a local Logstash clone
