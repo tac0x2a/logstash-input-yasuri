@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'logstash-core-plugin-api', '~> 2'
   s.add_runtime_dependency 'stud', '>= 0.0.22'
   s.add_runtime_dependency 'yasuri', '~> 1.9'
-
+  s.add_runtime_dependency 'rufus-scheduler', '>= 0'
   s.add_development_dependency 'logstash-devutils', '>= 0.0.16'
   s.add_development_dependency 'logstash-codec-plain'
   s.add_development_dependency 'fuubar', '>= 2.2.0'

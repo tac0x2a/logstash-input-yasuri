@@ -2,6 +2,7 @@
 require "logstash/inputs/base"
 require "logstash/namespace"
 require "socket" # for Socket.gethostname
+require "rufus-scheduler"
 require "mechanize"
 require "yasuri"
 
@@ -26,12 +27,13 @@ class LogStash::Inputs::Yasuri < LogStash::Inputs::Base
   # Split each results to individual events (struct or pages)
   config :split, :default => false
 
-  config :interval, :validate => :number, :default => 60
+  config :cron, :validate => :string, :default => '* * * * *'
 
   public
   def register
     @host = Socket.gethostname
     @agent = Mechanize.new
+    @scheduler = Rufus::Scheduler.new
 
     # If given both, logstash-input-yasuri use :parse_tree.
     tree = @parse_tree || File.read(@parse_tree_path)
@@ -41,14 +43,13 @@ class LogStash::Inputs::Yasuri < LogStash::Inputs::Base
 
   def run(queue)
     # we can abort the loop if stop? becomes true
-    while !stop?
+    scheduler.cron @cron do
       # because the sleep interval can be big, when shutdown happens
       # we want to be able to abort the sleep
       # Stud.stoppable_sleep will frequently evaluate the given block
       # and abort the sleep(@interval) if the return value is true
       inner_run(queue)
-      Stud.stoppable_sleep(@interval) { stop? }
-    end # loop
+    end
   end # def run
 
   def stop
@@ -57,6 +58,7 @@ class LogStash::Inputs::Yasuri < LogStash::Inputs::Base
     #  * close sockets (unblocking blocking reads/accepts)
     #  * cleanup temporary files
     #  * terminate spawned threads
+    @scheduler.shutdown
   end
 
   def inner_run(queue)
