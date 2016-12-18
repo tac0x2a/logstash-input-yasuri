@@ -43,7 +43,7 @@ class LogStash::Inputs::Yasuri < LogStash::Inputs::Base
 
   def run(queue)
     # we can abort the loop if stop? becomes true
-    scheduler.cron @cron do
+    @scheduler.cron @cron do
       # because the sleep interval can be big, when shutdown happens
       # we want to be able to abort the sleep
       # Stud.stoppable_sleep will frequently evaluate the given block
