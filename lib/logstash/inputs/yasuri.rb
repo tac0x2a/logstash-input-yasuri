@@ -50,6 +50,8 @@ class LogStash::Inputs::Yasuri < LogStash::Inputs::Base
       # and abort the sleep(@interval) if the return value is true
       inner_run(queue)
     end
+
+    @scheduler.join
   end # def run
 
   def stop
