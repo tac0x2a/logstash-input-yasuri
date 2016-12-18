@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'logstash-input-yasuri'
-  s.version         = '5.0.5'
+  s.version         = '5.0.6'
   s.licenses = ['Apache License (2.0)']
   s.summary = "Web scraping input plugin for logstash."
   s.description     = "Web scraping input plugin for logstash."
